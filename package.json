@@ -1,0 +1,19 @@
+{
+  "name": "graphql-server",
+  "version": "0.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamHjerpe/graphql-server.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AdamHjerpe/graphql-server/issues"
+  },
+  "homepage": "https://github.com/AdamHjerpe/graphql-server#readme"
+}
