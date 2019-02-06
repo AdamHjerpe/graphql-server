@@ -18,7 +18,7 @@ app.use('/graphql', graphqlHttp({
 mongoose.connect(
   `mongodb+srv://${process.env.MONGO_USER}:${
     process.env.MONGO_PASSWORD
-  }@cluster0-zaw49.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`, {
+  }@${process.env.MONGO_HOST}/${process.env.MONGO_DB}?retryWrites=true`, {
     useNewUrlParser: true,
     useCreateIndex: true
   }
