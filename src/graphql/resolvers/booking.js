@@ -1,14 +1,12 @@
-const bcrypt = require('bcryptjs')
-
 const Event = require('../../model/Event')
-const User = require('../../model/User')
 const Booking = require('../../model/Booking')
-
 const { transformBooking, transformEvent } = require('./merge')
 
 module.exports = {
-
-  bookings: async () => {
+  bookings: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error('Unauthenticated')
+    }
     try {
       const bookings = await Booking.find()
       return bookings.map(booking => transformBooking(booking))
@@ -16,33 +14,22 @@ module.exports = {
       throw err
     }
   },
-  createUser: async args => {
-    try {
-      const existingUser = await User.findOne({ email: args.userInput.email })
-      if (existingUser) {
-        throw new Error('User exists already.')
-      }
-      const hashedPassword = await bcrypt.hash(args.userInput.password, 12)
-      const user = new User({
-        email: args.userInput.email,
-        password: hashedPassword
-      })
-      const result = await user.save()
-      return { ...result._doc, password: null, _id: result.id }
-    } catch (err) {
-      throw err
+  bookEvent: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error('Unauthenticated')
     }
-  },
-  bookEvent: async args => {
     const fetchedEvent = await Event.findOne({ _id: args.eventId })
     const booking = new Booking({
-      user: '5c59ba5bfe111e570c3ae11b',
+      user: req.userId,
       event: fetchedEvent
     })
     const result = await booking.save()
     return transformBooking(result)
   },
-  cancelBooking: async args => {
+  cancelBooking: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error('Unauthenticated')
+    }
     try {
       const booking = await Booking.findById(args.bookingId).populate('event')
       const event = transformEvent(booking.event)
