@@ -29,7 +29,7 @@ app.use('/graphql', graphqlHttp({
 mongoose.connect(
   `mongodb+srv://${process.env.MONGO_USER}:${
     process.env.MONGO_PASSWORD
-  }@${process.env.MONGO_HOST}/${process.env.MONGO_DB}?retryWrites=true`, {
+  }@mongo:27017?retryWrites=true`, {
     useNewUrlParser: true,
     useCreateIndex: true
   }
