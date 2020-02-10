@@ -26,17 +26,15 @@ app.use('/graphql', graphqlHttp({
   graphiql: true
 }))
 
-mongoose.connect(
-  `mongodb+srv://${process.env.MONGO_USER}:${
-    process.env.MONGO_PASSWORD
-  }@${process.env.MONGO_HOST}/${process.env.MONGO_DB}?retryWrites=true`, {
-    useNewUrlParser: true,
-    useCreateIndex: true
-  }
-).then(
-  app.listen(process.env.PORT || 3000),
+const mongoURL = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}/${process.env.MONGO_DB}?retryWrites=true`
+
+mongoose.connect(mongoURL, {
+  useNewUrlParser: true,
+  useCreateIndex: true
+}).then(() => {
+  app.listen(process.env.PORT || 3000)
   console.log('Up and running')
-).catch(err => {
+}).catch(err => {
   console.error(err)
 })
 
