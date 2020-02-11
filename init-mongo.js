@@ -8,3 +8,4 @@ db.createUser({
         }
     ]
 })
+console.log(`This is the init user: ${process.env.MONGO_USER}`)

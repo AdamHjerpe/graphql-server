@@ -27,8 +27,7 @@ app.use('/graphql', graphqlHttp({
 }))
 
 mongoose.connect(
-  //  ${process.env.MONGO_USER}:${process.env.MONGO_PWD@}
-  `mongodb://mongo:27017/${process.env.MONGO_DB}`, {
+  `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@mongo:27017/${process.env.MONGO_DB}`, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
