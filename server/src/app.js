@@ -27,7 +27,7 @@ app.use('/graphql', graphqlHttp({
 }))
 
 mongoose.connect(
-  `mongodb+srv://MongoAdmin:passphrase@mongo:27017?retryWrites=true`, {
+  `mongodb+srv://mongo:27017`, {
     useNewUrlParser: true,
     useCreateIndex: true
   }).then(() => {
