@@ -27,9 +27,11 @@ app.use('/graphql', graphqlHttp({
 }))
 
 mongoose.connect(
-  `mongodb+srv://mongo:27017`, {
+  //  ${process.env.MONGO_USER}:${process.env.MONGO_PWD@}
+  `mongodb://mongo:27017/${process.env.MONGO_DB}`, {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useUnifiedTopology: true
   }).then(() => {
   app.listen(process.env.PORT || 3000)
   console.log('Up and running')
