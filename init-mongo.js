@@ -1,11 +1,14 @@
+const username =  "docker"
+const password = "passphrase"
+const database = "example"
+
 db.createUser({
-    user: process.env.MONGO_USER,
-    pwd: process.env.MONGO_PWD,
+    user: username,
+    pwd: password,
     roles: [
         {
             role: "readWrite",
-            db: process.env.MONGO_DB
+            db: database
         }
     ]
 })
-console.log(`This is the init user: ${process.env.MONGO_USER}`)
