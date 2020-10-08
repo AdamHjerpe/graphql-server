@@ -1,5 +1,4 @@
-version: '3'
-
+version: "3.7"
 services:
   app:
     build: ./server/
@@ -23,6 +22,7 @@ services:
     volumes:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
       - ./data/db:/data/db
+    restart: always
     environment: 
       - MONGO_INITDB_DATABASE=${MONGO_DB}
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_ADMIN_USER}

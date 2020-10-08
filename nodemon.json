@@ -1,0 +1,15 @@
+{
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules"
+  ],
+  "env": {
+    "NODE_ENV": "development",
+    "MONGO_HOST": "mongo",
+    "MONGO_USER": "docker",
+    "MONGO_PASSWORD": "passphrase",
+    "MONGO_DB": "example",
+    "PORT": 8000,
+    "SECRET_KEY": "someSecretKey"
+  }
+}
